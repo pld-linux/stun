@@ -9,6 +9,7 @@ Source0:	http://dl.sourceforge.net/stun/stund_%{version}_Oct29.tgz
 # Source0-md5:	5c5b1b206c9f9d8fdbb826a83da1fb0e
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
+Source3:	%{name}.logrotate
 URL:		http://www.vovida.org/applications/downloads/stun/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,12 +57,16 @@ Prosty klient do testowania serwerów STUN.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},/etc/{rc.d/init.d,sysconfig}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir}} \
+	$RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,logrotate.d} \
+	$RPM_BUILD_ROOT/var/log
 
 install server $RPM_BUILD_ROOT%{_sbindir}/stund
 install client $RPM_BUILD_ROOT%{_bindir}/stunc
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/stund
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/stund
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/logrotate.d/stund
+touch $RPM_BUILD_ROOT/var/log/stund
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,6 +94,8 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/stund
 %attr(640,root,root) %config(noreplace) %verify(not size md5 mtime) /etc/sysconfig/stund
+%attr(640,root,root) %config(noreplace) %verify(not size md5 mtime) /etc/logrotate.d/stund
+%ghost /var/log/stund
 
 %files client
 %defattr(644,root,root,755)
