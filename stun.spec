@@ -1,11 +1,11 @@
 Summary:	Simple Traversal of UDP through NATs
-Summary(pl):	STUN - Proste Przepuszczanie UDP przez NATa
+Summary(pl):	STUN - Proste Przepuszczanie UDP przez NAT-a
 Name:		stun
 Version:	0.94
 Release:	1
 Group:		Networking/Daemons
 License:	Vovida Software License
-Source0:	http://dl.sf.net/%{name}/stund_%{version}_Oct29.tgz
+Source0:	http://dl.sourceforge.net/stun/stund_%{version}_Oct29.tgz
 # Source0-md5:	5c5b1b206c9f9d8fdbb826a83da1fb0e
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
@@ -13,12 +13,18 @@ URL:		http://www.vovida.org/applications/downloads/stun/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
+The STUN (Simple Traversal of UDP through NATs (Network Address
+Translation)) server is an implementation of the STUN protocol that
+enables STUN functionality in SIP-based systems.
 
 %description -l pl
+Serwer STUN (prostego przepuszczania UDP przez NAT-a) jest
+implementacj± protoko³u STUN, który umo¿liwia wykorzystanie systemów
+opartych na protokole SIP w sieciach za NAT-em.
 
 %package server
 Summary:	Simple Traversal of UDP through NATs server
-Summary(pl):	Serwer STUN (Proste Przepuszczanie UDP przez NATa)
+Summary(pl):	Serwer STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Daemons
 
 %description server
@@ -27,21 +33,20 @@ Translation)) server is an implementation of the STUN protocol that
 enables STUN functionality in SIP-based systems.
 
 %description server -l pl
-Serwer STUN (Proste Przepuszczanie UDP przez NATa) jest implementacj±
-protoko³u STUN który umo¿liwia wykorzystanie systemów opartych na
-protokole SIP w sieciach za NATem.
-
+Serwer STUN (prostego przepuszczania UDP przez NAT-a) jest
+implementacj± protoko³u STUN, który umo¿liwia wykorzystanie systemów
+opartych na protokole SIP w sieciach za NAT-em.
 
 %package client
 Summary:	Simple Traversal of UDP through NATs client
-Summary(pl):	Klient STUN (Proste Przepuszczanie UDP przez NATa)
+Summary(pl):	Klient STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Utilities
 
 %description client
-A simple client for testing a STUN server
+A simple client for testing a STUN server.
 
 %description client -l pl
-Prosty klient do testowania serwerów STUN
+Prosty klient do testowania serwerów STUN.
 
 %prep
 %setup -q -n stund
