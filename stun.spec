@@ -11,6 +11,7 @@ Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Source3:	%{name}.logrotate
 URL:		http://www.vovida.org/applications/downloads/stun/
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,6 +28,8 @@ opartych na protokole SIP w sieciach za NAT-em.
 Summary:	Simple Traversal of UDP through NATs server
 Summary(pl):	Serwer STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Daemons
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 
 %description server
 The STUN (Simple Traversal of UDP through NATs (Network Address
