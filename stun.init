@@ -1,0 +1,92 @@
+#!/bin/sh
+#
+# stund	STUN server
+#
+# chkconfig:	345 14 91
+#
+# description:	Simple Traversal of UDP through NATs server
+#
+# $Id$
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Default settings
+LOGFILE="/dev/null"
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/stund ] && . /etc/sysconfig/stund
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down stund
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/stund ]; then
+		show "Starting %s service" stund
+		[ -n "$PRIMARY_IP" ] &&\
+	       		STUND_OPTIONS="$STUND_OPTIONS -h $PRIMARY_IP "
+		[ -n "$SECONDARY_IP" ] &&\
+	       		STUND_OPTIONS="$STUND_OPTIONS -a $SECONDARY_IP"
+		[ -n "$PRIMARY_PORT" ] &&\
+	       		STUND_OPTIONS="$STUND_OPTIONS -p $PRIMARY_PORT"
+		[ -n "$SECONDARY_PORT" ] &&\
+	       		STUND_OPTIONS="$STUND_OPTIONS -o $SECONDARY_PORT"
+		stund -b $STUND_OPTIONS > "$LOGFILE" 2>&1 </dev/null
+		RETVAL=$?
+		if [ $RETVAL -eq 0 ]; then
+		   touch /var/lock/subsys/stund
+		   ok
+		else
+		    fail
+		fi
+	else
+		msg_already_running stund
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/stund ]; then
+		# Stop daemons.
+		msg_stopping stund
+		killproc stund
+		rm -f /var/lock/subsys/stund
+	else
+		msg_not_running stund
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  force-reload)
+	$0 restart
+	exit $?
+	;;
+  status)
+	status stund
+	RETVAL=$?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL
+
+# This must be last line !
+# vi:syntax=sh:tw=78:ts=8:sw=4

@@ -1,0 +1,18 @@
+# Nice level for stund
+SERVICE_RUN_NICE_LEVEL="+5"
+
+# You will probably have to set these IP addresses manually. You have to
+# use _two_different_ public addressess assigned to your server.
+# If you have only one IP address - STUN won't work properly.
+PRIMARY_IP=""
+SECONDARY_IP=""
+
+# UDP ports to use
+#PRIMARY_PORT=3478
+#SECONDARY_PORT=3479
+
+# File to put logs in
+LOGFILE="/var/log/stund"
+
+# additional stund options
+STUND_OPTIONS=""

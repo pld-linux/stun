@@ -1,0 +1,5 @@
+/var/log/stund {
+    postrotate
+	/etc/rc.d/init.d/stund force-reload > /dev/null 2>&1 || /bin/true
+    endscript
+}
