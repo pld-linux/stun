@@ -5,7 +5,7 @@ Version:	0.94
 Release:	1
 Group:		Networking/Daemons
 License:	Vovida Software License
-Source0:	http://dl.sourceforge.net/stun/stund_%{version}_Oct29.tgz
+Source0:	http://dl.sourceforge.net/stun/%{name}d_%{version}_Oct29.tgz
 # Source0-md5:	5c5b1b206c9f9d8fdbb826a83da1fb0e
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
@@ -28,7 +28,7 @@ opartych na protokole SIP w sieciach za NAT-em.
 Summary:	Simple Traversal of UDP through NATs server
 Summary(pl):	Serwer STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Daemons
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 
 %description server
@@ -53,7 +53,7 @@ A simple client for testing a STUN server.
 Prosty klient do testowania serwerów STUN.
 
 %prep
-%setup -q -n stund
+%setup -q -n %{name}d
 
 %build
 %{__make}
@@ -96,8 +96,8 @@ fi
 %doc rfc3489.txt
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/stund
-%attr(640,root,root) %config(noreplace) %verify(not size md5 mtime) /etc/sysconfig/stund
-%attr(640,root,root) %config(noreplace) %verify(not size md5 mtime) /etc/logrotate.d/stund
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/stund
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/stund
 %ghost /var/log/stund
 
 %files client
