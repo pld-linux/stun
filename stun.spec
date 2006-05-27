@@ -12,6 +12,7 @@ Source2:	%{name}.init
 Source3:	%{name}.logrotate
 URL:		http://www.vovida.org/applications/downloads/stun/
 BuildRequires:	libstdc++-devel
+BuildRequires:	openssl-devel
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
