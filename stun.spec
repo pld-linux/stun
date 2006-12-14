@@ -1,18 +1,19 @@
 Summary:	Simple Traversal of UDP through NATs
 Summary(pl):	STUN - Proste Przepuszczanie UDP przez NAT-a
 Name:		stun
-Version:	0.94
+Version:	0.96
 Release:	1
 Group:		Networking/Daemons
 License:	Vovida Software License
-Source0:	http://dl.sourceforge.net/stun/%{name}d_%{version}_Oct29.tgz
-# Source0-md5:	5c5b1b206c9f9d8fdbb826a83da1fb0e
+Source0:	http://download.sourceforge.net/stun/%{name}d_%{version}_Aug13.tgz
+# Source0-md5:	3273abb1a6f299f4e611b658304faefa
 Source1:	%{name}.sysconfig
 Source2:	%{name}.init
 Source3:	%{name}.logrotate
 URL:		http://www.vovida.org/applications/downloads/stun/
 BuildRequires:	libstdc++-devel
 BuildRequires:	openssl-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -78,17 +79,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post server
 /sbin/chkconfig --add stund
-if [ -f /var/lock/subsys/stund ]; then
-        /etc/rc.d/init.d/stund restart >&2
-else
-        echo "Run \"/etc/rc.d/init.d/stund start\" to start STUN server daemon."
-fi
+%service stund restart "STUN server daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/stund ]; then
-                /etc/rc.d/init.d/stund stop >&2
-        fi
+	%service stund stop
         /sbin/chkconfig --del stund
 fi
 
