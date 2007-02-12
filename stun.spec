@@ -1,5 +1,5 @@
 Summary:	Simple Traversal of UDP through NATs
-Summary(pl.UTF-8):   STUN - Proste Przepuszczanie UDP przez NAT-a
+Summary(pl.UTF-8):	STUN - Proste Przepuszczanie UDP przez NAT-a
 Name:		stun
 Version:	0.96
 Release:	1
@@ -29,7 +29,7 @@ opartych na protokole SIP w sieciach za NAT-em.
 
 %package server
 Summary:	Simple Traversal of UDP through NATs server
-Summary(pl.UTF-8):   Serwer STUN (prostego przepuszczania UDP przez NAT-a)
+Summary(pl.UTF-8):	Serwer STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Daemons
 Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
@@ -46,7 +46,7 @@ opartych na protokole SIP w sieciach za NAT-em.
 
 %package client
 Summary:	Simple Traversal of UDP through NATs client
-Summary(pl.UTF-8):   Klient STUN (prostego przepuszczania UDP przez NAT-a)
+Summary(pl.UTF-8):	Klient STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Utilities
 
 %description client
