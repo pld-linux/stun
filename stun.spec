@@ -1,5 +1,5 @@
 Summary:	Simple Traversal of UDP through NATs
-Summary(pl):	STUN - Proste Przepuszczanie UDP przez NAT-a
+Summary(pl.UTF-8):   STUN - Proste Przepuszczanie UDP przez NAT-a
 Name:		stun
 Version:	0.96
 Release:	1
@@ -22,14 +22,14 @@ The STUN (Simple Traversal of UDP through NATs (Network Address
 Translation)) server is an implementation of the STUN protocol that
 enables STUN functionality in SIP-based systems.
 
-%description -l pl
+%description -l pl.UTF-8
 Serwer STUN (prostego przepuszczania UDP przez NAT-a) jest
-implementacj± protoko≥u STUN, ktÛry umoøliwia wykorzystanie systemÛw
+implementacjƒÖ protoko≈Çu STUN, kt√≥ry umo≈ºliwia wykorzystanie system√≥w
 opartych na protokole SIP w sieciach za NAT-em.
 
 %package server
 Summary:	Simple Traversal of UDP through NATs server
-Summary(pl):	Serwer STUN (prostego przepuszczania UDP przez NAT-a)
+Summary(pl.UTF-8):   Serwer STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Daemons
 Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
@@ -39,21 +39,21 @@ The STUN (Simple Traversal of UDP through NATs (Network Address
 Translation)) server is an implementation of the STUN protocol that
 enables STUN functionality in SIP-based systems.
 
-%description server -l pl
+%description server -l pl.UTF-8
 Serwer STUN (prostego przepuszczania UDP przez NAT-a) jest
-implementacj± protoko≥u STUN, ktÛry umoøliwia wykorzystanie systemÛw
+implementacjƒÖ protoko≈Çu STUN, kt√≥ry umo≈ºliwia wykorzystanie system√≥w
 opartych na protokole SIP w sieciach za NAT-em.
 
 %package client
 Summary:	Simple Traversal of UDP through NATs client
-Summary(pl):	Klient STUN (prostego przepuszczania UDP przez NAT-a)
+Summary(pl.UTF-8):   Klient STUN (prostego przepuszczania UDP przez NAT-a)
 Group:		Networking/Utilities
 
 %description client
 A simple client for testing a STUN server.
 
-%description client -l pl
-Prosty klient do testowania serwerÛw STUN.
+%description client -l pl.UTF-8
+Prosty klient do testowania serwer√≥w STUN.
 
 %prep
 %setup -q -n %{name}d
